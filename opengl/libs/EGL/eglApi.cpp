@@ -151,11 +151,13 @@ static const extention_map_t sExtensionMap[] = {
     { "eglGetSyncAttribKHR",
             (__eglMustCastToProperFunctionPointerType)&eglGetSyncAttribKHR },
 
+#ifndef STE_HARDWARE
     // EGL_NV_system_time
     { "eglGetSystemTimeFrequencyNV",
             (__eglMustCastToProperFunctionPointerType)&eglGetSystemTimeFrequencyNV },
     { "eglGetSystemTimeNV",
             (__eglMustCastToProperFunctionPointerType)&eglGetSystemTimeNV },
+#endif
 
     // EGL_KHR_wait_sync
     { "eglWaitSyncKHR",
@@ -1817,6 +1819,7 @@ EGLBoolean eglPresentationTimeANDROID(EGLDisplay dpy, EGLSurface surface,
 // ----------------------------------------------------------------------------
 // NVIDIA extensions
 // ----------------------------------------------------------------------------
+#ifndef STE_HARDWARE
 EGLuint64NV eglGetSystemTimeFrequencyNV()
 {
     clearError();
@@ -1881,3 +1884,4 @@ EGLBoolean eglSetDamageRegionKHR(EGLDisplay dpy, EGLSurface surface,
 
     return EGL_FALSE;
 }
+#endif
